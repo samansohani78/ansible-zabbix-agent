@@ -1,4 +1,4 @@
 ---
-  zabbix_server_ip: 185.105.187.110
-  zabbix_server_Active_ip: 185.105.187.110:10051
-  zabbix_Agent_hostname: srv.dpvps.com
+  zabbix_server_ip: ?
+  zabbix_server_Active_ip: ?
+  zabbix_Agent_hostname: ?
