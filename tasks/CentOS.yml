@@ -1,0 +1,32 @@
+---
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+
+  - name: install_repo_for_centos_6
+    yum:
+      name: http://repo.zabbix.com/zabbix/3.4/rhel/6/x86_64/zabbix-agent-3.4.1-1.el6.x86_64.rpm
+      state: present
+    when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6")
+
+  - name: install_repo_for_centos_7
+    yum:
+      name: http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-agent-3.4.1-1.el7.x86_64.rpm
+      state: present
+    when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "7")
+
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+
+  - name: copy file conf
+    template:
+      src: zabbix_agentd.conf.j2
+      dest: /etc/zabbix/zabbix_agentd.conf
+
+  - name: restart zabbix_agentd
+    service:
+      name: zabbix-agent
+      state: restarted
